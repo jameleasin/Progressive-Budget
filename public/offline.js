@@ -1,11 +1,11 @@
 // CREATE OFFLINE DATABASE
 let db;
-const request = window.indexedDB.open("offlineBudget", 1);
+const request = window.indexedDB.open("progressivebudget2", 1);
 
 // CREATE SCHEMA
 request.onupgradeneeded = event => {
     const db = event.target.result;
-    db.createObjectStore("offlineBudget", { autoIncrement: true });
+    db.createObjectStore("progressivebudget2", { autoIncrement: true });
 };
 
 // ON SUCCESS
@@ -24,16 +24,16 @@ request.onerror = function (event) {
 
 // SAVE RECORD FUNCTION
 function saveRecord(data) {
-    const transaction = db.transaction(["offlineBudget"], "readwrite");
-    const store = transaction.objectStore("offlineBudget");  
+    const transaction = db.transaction(["progressivebudget2"], "readwrite");
+    const store = transaction.objectStore("progressivebudget2t");  
     store.add(data);
 }
 
 // CHECK DATABASE CONNECTION
 function checkDatabase() {
     
-  const transaction = db.transaction(["offlineBudget"], "readwrite");
-  const store = transaction.objectStore("offlineBudget");
+  const transaction = db.transaction(["progressivebudget2"], "readwrite");
+  const store = transaction.objectStore("progressivebudget2");
   const getAll = store.getAll();
 
   getAll.onsuccess = function() {
@@ -49,8 +49,8 @@ function checkDatabase() {
       .then(response => response.json())
       .then(() => {
         
-        const transaction = db.transaction(["offlineBudget"], "readwrite");
-        const store = transaction.objectStore("offlineBudget");
+        const transaction = db.transaction(["progressivebudget2"], "readwrite");
+        const store = transaction.objectStore("progressivebudget2");
         store.clear();
       });
     }
